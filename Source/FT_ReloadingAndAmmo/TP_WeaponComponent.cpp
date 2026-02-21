@@ -119,7 +119,8 @@ bool UTP_WeaponComponent::AttachWeapon(AFT_ReloadingAndAmmoCharacter* TargetChar
 	}
 
 	
-	UE_LOG(LogTemp, Warning, TEXT("This is where to bind and setup the UI"));
+	//UE_LOG(LogTemp, Warning, TEXT("This is where to bind and setup the UI"));
+
 	return true;
 }
 

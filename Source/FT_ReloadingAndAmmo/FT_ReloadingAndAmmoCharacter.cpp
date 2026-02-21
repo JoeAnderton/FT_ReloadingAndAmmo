@@ -42,6 +42,16 @@ void AFT_ReloadingAndAmmoCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+
+	// initialise the hud, we can activate a HUD here but we will do a seperate focus on this
+	/*if (HUDType)
+	{
+		HUD = CreateWidget<UUserWidget>(GetWorld(), HUDType);
+		if (HUD)
+		{
+			HUD->AddToViewport();
+		}
+	}*/
 }
 
 //////////////////////////////////////////////////////////////////////////// Input

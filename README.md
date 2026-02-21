@@ -2,15 +2,17 @@
 In this focus topic you will work on creating Data Assets for use in a shooting demo game
 
 ## Overview
-In the last focus topic you worked on handling the Health side of an FPS, in this you'll be working on the opposite side the Ammo and Damaging system. Notice i'm treating these as seperate game mechanics, as they are independent of each other. This is the same as your assessment, you can use another to help demonstrate your focus mechanic, but foucs on one key gameplay mechanic.
+In the last focus topic you worked on handling the Health side of an FPS, in this you'll be working on the opposite side the Ammo and Damaging system. Notice i'm treating these as seperate game mechanics, as they are independent of each other. This is the same as your assessment, you can use another to help demonstrate your focus mechanic, but the focus on one key gameplay mechanic.
 
 In this we will be adding Data Assets to handle and update different types of ammo, and then use these to update the projectile damage system.
 
 ## Where to find the relevant scripts
 
+All Scripts are in the Source folder, as we are moving to larger projects, I have labelled key scripts.
+
 ## Task
-- Implement the reloading coding to allow a player to reload their weapon, when the ammunition depletes. 
-- Implement the passing the data asset information to the projectile to update the projectile values.
+- Implement a second type of data asset to give an alternative ammo type. 
+- Implement a reserve in which the player can use with a delay, (see TargetPanel.cpp for a timer).
 ## Hints  
 
 ### Reloading - TP_WeaponComponent.cpp
@@ -69,19 +71,20 @@ Notice, the input binding for the shooting is on the weapon not the player.
 ### Data Assets for Ammo Types
 Note, the data assets are based on a Struct, which means the Primary Data Asset is a C++ file.
 
+Note there are many other changes, see the github history for full differences.
+
 ## Challenges
 Test your might
 
 ## Easy 
-- Add a new ammo type, with different damage and max ammo capacity.
-- Create a new Data Asset Ammo and add to your game.
-- Add in a default ammo type that the player reverts to if they run out of ammo for their current weapon or reload with the specail ammo. Think Left 4 Dead, pistols when you get specail ammo.
-- Currently we pick up ammo to reload, it would be a good showcase if you made a reserve and added a reload input binding,
+- Add a new ammo type (Data Asset), with different damage and max ammo capacity (Blueprints Ammo PickUp Basic and DataAsssets).
+- Add in a default ammo type that the player reverts to if they run out of ammo for their current weapon or reload with the specail ammo. Think Left 4 Dead, pistols when you get specail ammo (TP_WeaponComponent.cpp).
+- Currently we pick up ammo to reload, it would be a good showcase if you made a reserve and added a reload input binding (TP_WeaponComponent.h).
 
 ## Medium
-- Add one new attribute to the ammo type that effects the projectile, e.g. Mass/ impact force, Range, Speed or number of bounces.
-- Refine the gameplay to better feedback to the player when reloading, out of ammo, or switching ammo types, e.g. the player has a reload time when they pick up new ammo, the ammo stores material applied the the weapon or rounds.
-- Refine the gameplay to add a bit more feel to the game, think recall when shoot,  or pushing the player in a jump shoot.
+- Add one new attribute to the ammo type that effects the projectile, e.g. Mass/ impact force, Range, Speed or number of bounces (FT_ReloadingAndAmmoProjectile.cpp and TP_WeaponComponent.cpp).
+- Adjust the targets so certian round of damage is needed to turn them off (TargetPanel.cpp).
+- Refine the gameplay to add a bit more feel to the game, think recoil when shoot, or pushing the player in a jump shoot.
 
 ## Hard
 - We are using Data Assets to store different types of ammo. However, updating these individually can be difficult, you can use a Data Table, CSV file in Unreal, but there are also difficulties in using a datatable. Although not a task, try to be aware of the tools for managing the data and assets in your games.
