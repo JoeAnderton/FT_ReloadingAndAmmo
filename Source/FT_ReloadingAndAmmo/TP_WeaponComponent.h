@@ -8,6 +8,7 @@
 #include "TP_WeaponComponent.generated.h"
 
 class AFT_ReloadingAndAmmoCharacter;
+class AFT_ReloadingAndAmmoProjectile;
 
 UCLASS(Blueprintable, BlueprintType, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class FT_RELOADINGANDAMMO_API UTP_WeaponComponent : public USkeletalMeshComponent
@@ -39,12 +40,20 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	class UInputAction* FireAction;
 
+	/** Reload Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* ReloadAction;
+
 	/** How much ammo have we got */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Ammo", meta = (AllowPrivateAccess = "true"))
 	int AmmoInClip = 10;
 	/** Store our ammo type */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Ammo", meta = (AllowPrivateAccess = "true"))
 	UAmmoType* AmmoType;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Ammo", meta = (AllowPrivateAccess = "true"))
+	UAmmoType* WeakAmmoType;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Ammo", meta = (AllowPrivateAccess = "true"))
+	UAmmoType* DefaultAmmoType;
 
 	/** Sets default values for this component's properties */
 	UTP_WeaponComponent();
@@ -56,6 +65,10 @@ public:
 	/** Make the weapon Fire a Projectile */
 	UFUNCTION(BlueprintCallable, Category="Weapon")
 	void Fire();
+
+	/** Reload weapon */
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+	void Reload();
 
 	/** Get the ammo count*/ 
 	UFUNCTION(BlueprintCallable, Category = "Ammo")

@@ -25,7 +25,8 @@ void UTP_WeaponComponent::Fire()
 {
 	if (AmmoInClip <= 0)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Out of ammo!"));
+		SetNewAmmoType(WeakAmmoType);
+		UE_LOG(LogTemp, Warning, TEXT("Weak ammo! Need to reload!"));
 		return;
 	}else
 	{
@@ -80,6 +81,12 @@ void UTP_WeaponComponent::Fire()
 	}
 }
 
+void UTP_WeaponComponent::Reload()
+{
+	SetNewAmmoType(DefaultAmmoType);
+	UE_LOG(LogTemp, Warning, TEXT("Reloading!"));
+}
+
 int UTP_WeaponComponent::GetAmmoInClip()
 {
 	return AmmoInClip;
@@ -115,6 +122,8 @@ bool UTP_WeaponComponent::AttachWeapon(AFT_ReloadingAndAmmoCharacter* TargetChar
 		{
 			// Fire
 			EnhancedInputComponent->BindAction(FireAction, ETriggerEvent::Triggered, this, &UTP_WeaponComponent::Fire);
+			// Reload
+			EnhancedInputComponent->BindAction(ReloadAction, ETriggerEvent::Triggered, this, &UTP_WeaponComponent::Reload);
 		}
 	}
 
