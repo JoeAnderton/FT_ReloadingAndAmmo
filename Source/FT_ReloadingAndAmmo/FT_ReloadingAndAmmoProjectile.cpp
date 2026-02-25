@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "FT_ReloadingAndAmmoProjectile.h"
+#include "TP_WeaponComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 #include <TargetPanel.h>
@@ -23,13 +24,23 @@ AFT_ReloadingAndAmmoProjectile::AFT_ReloadingAndAmmoProjectile()
 	// Use a ProjectileMovementComponent to govern this projectile's movement
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileComp"));
 	ProjectileMovement->UpdatedComponent = CollisionComp;
-	ProjectileMovement->InitialSpeed = 3000.f;
-	ProjectileMovement->MaxSpeed = 3000.f;
+	ProjectileMovement->InitialSpeed = 3000;
+	ProjectileMovement->MaxSpeed = 3000;
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = true;
 
 	// Die after 3 seconds by default
 	InitialLifeSpan = 3.0f;
+}
+void AFT_ReloadingAndAmmoProjectile::setStats(int BulletType)
+{
+	if (BulletType == 2) {
+		ProjectileMovement->Bounciness = 0;
+		ProjectileMovement->MaxSpeed = 2000;
+	}
+	else if (BulletType == 1){
+		ProjectileMovement->MaxSpeed = 3000;
+	}
 }
 
 void AFT_ReloadingAndAmmoProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)

@@ -47,6 +47,8 @@ public:
 	/** How much ammo have we got */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Ammo", meta = (AllowPrivateAccess = "true"))
 	int AmmoInClip = 10;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Ammo", meta = (AllowPrivateAccess = "true"))
+	int BulletType = 1;
 	/** Store our ammo type */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Ammo", meta = (AllowPrivateAccess = "true"))
 	UAmmoType* AmmoType;

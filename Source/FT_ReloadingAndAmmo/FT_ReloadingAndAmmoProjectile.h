@@ -23,6 +23,8 @@ class AFT_ReloadingAndAmmoProjectile : public AActor
 	UProjectileMovementComponent* ProjectileMovement;
 public:
 	int Damage;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (ExposeOnSpawn))
+	int CurrentBulletType;
 
 public:
 	AFT_ReloadingAndAmmoProjectile();
@@ -30,6 +32,8 @@ public:
 	/** called when projectile hits something */
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+	UFUNCTION()
+	void setStats(int BulletType);
 
 	/** Returns CollisionComp subobject **/
 	USphereComponent* GetCollisionComp() const { return CollisionComp; }

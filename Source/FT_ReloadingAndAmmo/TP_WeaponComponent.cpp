@@ -26,6 +26,7 @@ void UTP_WeaponComponent::Fire()
 	if (AmmoInClip <= 0)
 	{
 		SetNewAmmoType(WeakAmmoType);
+		BulletType = 2;
 		UE_LOG(LogTemp, Warning, TEXT("Weak ammo! Need to reload!"));
 		return;
 	}else
@@ -58,6 +59,7 @@ void UTP_WeaponComponent::Fire()
 			AFT_ReloadingAndAmmoProjectile* Projectile = World->SpawnActor<AFT_ReloadingAndAmmoProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 			if (Projectile && AmmoType)
 			{
+				Projectile->setStats(BulletType);
 				Projectile->Damage = AmmoType->Damage;
 			}
 		}
@@ -83,6 +85,7 @@ void UTP_WeaponComponent::Fire()
 
 void UTP_WeaponComponent::Reload()
 {
+	BulletType = 1;
 	SetNewAmmoType(DefaultAmmoType);
 	UE_LOG(LogTemp, Warning, TEXT("Reloading!"));
 }
